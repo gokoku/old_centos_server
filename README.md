@@ -5,6 +5,14 @@ VirtualBox を使う。
 * MySQL 5.1
 * Apache 2.2
 
+## Vagrant と Packer を用意する
+```
+$ brew install packer
+$ brew cask install vagrant
+
+$ vagrant plugin install vagrant-vbguest
+$ vagrant plugin install vagrant-hostsupdater
+```
 ## Packer で Vagrant Box を作って登録する
 ```
 $ cd old_centos_server/packer
@@ -20,10 +28,19 @@ $ vagrant box add old_centos centos-6-5-x65-virtualbox.box
 
 
 ## Vagrant でローカルサーバを立てる
+
+Vagrantfile の hostname を書き換える。
+```
+# Vagrantfile
+
+config.vm.hostname = "example.com"
+```
+
 ```
 $ cd old_centos_server
 $ vagrant up
 ```
+
 http://192.168.33.10 にブラウザアクセス。
 
 
@@ -32,11 +49,13 @@ http://192.168.33.10 にブラウザアクセス。
 $ vagrant box add old_centos centos-6-5-x65-virtualbox.box --force
 ```
 
-#### issue
-`vagrant up` のとき、共有フォルダのマウントに失敗する。
-ホスト VirtualBox とゲストでバージョンを合わせるために、プラグインが必要。
-```
-$ vagrant plugin install vagrant-vbguest
-```
+#### ※※※
+ホスト VirtualBox とゲストでバージョンを合わせるためプラグインを入れたが、
+これだけだと`vagrant up`で共有フォルダのマウントに失敗する。
 
-がうまくいかず、結局 Vagrant サーバで `yum update` して Error が出ないようにしたので、CentOS が 6.10 になる。
+Packer のプロビジョニングでカーネルを変える必要があった。
+```
+# packer/scripts/cleanup.sh
+...
+yum -y install http://vault.centos.org/6.4/cr/x86_64/Packages/kernel-devel-2.6.32-431.el6.x86_64.rpm
+```
