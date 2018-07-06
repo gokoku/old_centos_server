@@ -51,7 +51,7 @@ $ vagrant box add old_centos centos-6-5-x65-virtualbox.box --force
 
 #### ※※※
 ホスト VirtualBox とゲストでバージョンを合わせるためプラグインを入れたが、
-これだけだと`vagrant up`で共有フォルダのマウントに失敗する。
+これだけだと共有フォルダのマウントに失敗する。
 
 Packer のプロビジョニングでカーネルを変える必要があった。
 ```
