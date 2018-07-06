@@ -1,6 +1,8 @@
+#!/bin/bash
+
 config=$(find /var/www/html -name wp-config.php)
 
-if [ -e $config ];
+if [ -e "$config" ];
 then
     echo ">>> Word Press の $config がありました"
     db_name=$(grep  -e "DB_NAME" $config | perl -pe 's|^.*[,]\s*'\''(.*)'\''\).*$|$1|sg')
