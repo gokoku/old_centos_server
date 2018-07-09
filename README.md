@@ -1,9 +1,10 @@
 # Vagrant で古いサーバ環境をローカルに構築する
 古い CentOS サーバ環境で動いている Word Press 等の急なメンテ用に、ローカルに環境を立てるためのもの。
 VirtualBox を使う。
-* PHP 5.3
-* MySQL 5.1
-* Apache 2.2
+* CentOS 6.5
+  * PHP 5.3
+  * MySQL 5.1
+  * Apache 2.2
 
 ## Vagrant と Packer を用意する
 ```
