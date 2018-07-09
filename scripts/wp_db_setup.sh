@@ -15,7 +15,7 @@ then
     mysql -uroot -e "grant all privileges on $db_name.* to $db_user@localhost identified by $db_passwd;" -p'root'
 
     dump=$(find /var/www/html -maxdepth 1 -name "*.sql")
-    if [ -e $dump ];
+    if [ -e "$dump" ];
     then
         echo ">>> SQL ダンプデータを読み込みます $dump"
         mysql $db_name < $dump -uroot -p'root'
