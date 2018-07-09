@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "old_centos"
+  config.vm.box = "old/centos65"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

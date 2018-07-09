@@ -17,7 +17,7 @@ $ vagrant plugin install vagrant-hostsupdater
 ```
 $ cd old_centos_server/packer
 $ packer build -only=virtualbox-iso template.json
-$ vagrant box add old_centos centos-6-5-x65-virtualbox.box
+$ vagrant box add 'old/centos65' centos-6-5-x65-virtualbox.box
 ```
 ## WordPress を立てる場合
 * `old_centos_server/html` が Vagrant の共有ディレクトリになってるので、ここに本番サーバのドキュメントルートの中身を置く。
